@@ -1,0 +1,2 @@
+POSTGRES_USER = "ariel"
+POSTGRES_PASSWORD = "mdp"
