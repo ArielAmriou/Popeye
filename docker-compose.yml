@@ -38,7 +38,7 @@ services:
     networks:
       - result-tier
   db:
-    image: postgres:17
+    image: postgres:16
     restart: on-failure
     env_file:
       - .env.db
