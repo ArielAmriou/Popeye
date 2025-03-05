@@ -8,6 +8,9 @@ services:
       - .env.poll
     networks:
       - poll-tier
+    depends_on:
+      - redis
+      - db
   redis:
     image: "redis:7-alpine"
     restart: on-failure
@@ -26,6 +29,9 @@ services:
       - .env.db
     networks:
       - back-tier
+    depends_on:
+      - redis
+      - db
   result:
     build: result/
     restart: on-failure
@@ -37,8 +43,11 @@ services:
       - .env.db
     networks:
       - result-tier
+    depends_on:
+      - db
   db:
     image: postgres:16
+    container_name: database
     restart: on-failure
     env_file:
       - .env.db
